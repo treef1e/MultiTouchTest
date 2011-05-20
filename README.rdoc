@@ -1,0 +1,6 @@
+= MultiTouchTest
+MultiTouchTest is a test program using View.onTouchEvent().
+
+= Android Market
+https://market.android.com/details?id=net.sabamiso.android.test.multitouchtest
+
