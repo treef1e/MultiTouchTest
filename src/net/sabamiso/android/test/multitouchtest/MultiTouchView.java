@@ -101,19 +101,19 @@ public class MultiTouchView extends View {
 		int pointer_idx = (evt.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 
 		switch (action) {
-		case MotionEvent.ACTION_DOWN: // 1�{�̎w���G�ꂽ�ꍇ
-		case MotionEvent.ACTION_POINTER_DOWN: // ���ł�1�{�ȏ�w���G��Ă����ԂŁA����Ɏw���ӂꂽ�ꍇ
+		case MotionEvent.ACTION_DOWN: // 1本の指が触れた場合
+		case MotionEvent.ACTION_POINTER_DOWN: // すでに1本以上指が触れている状態で、さらに指をふれた場合
 		case MotionEvent.ACTION_MOVE:
 			container.setFingerPoint(evt);
 			break;
-		case MotionEvent.ACTION_UP: // �Ō��1�{�̎w�𗣂����ꍇ
+		case MotionEvent.ACTION_UP: // 最後の1本の指を離した場合
 			container.clear();
 			break;
-		case MotionEvent.ACTION_POINTER_UP: // 2�{�ȏ�w���G��Ă����ԂŁA1�{�w�𗣂����ꍇ
+		case MotionEvent.ACTION_POINTER_UP: // 2本以上指が触れている状態で、1本指を離した場合
 			container.setFingerPoint(evt);
 			
-			// ���ۂɂ�ACTION_POINTER_?_UP���������Ă���̂ŁA
-			// �w�������ꂽ�|�C���g��index���擾���č폜����
+			// 実際にはACTION_POINTER_?_UPが発生しているので、
+			// 指が離されたポイントのindexを取得して削除する
 			container.removeFingerPoint(pointer_idx);
 			break;
 		}
